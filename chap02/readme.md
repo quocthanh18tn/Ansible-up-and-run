@@ -32,3 +32,18 @@ git commit --amend --no-edit -m "bacded"
 git reset HEAD~1   //quay nguoc lai 1 commit truoc do
 
 
+khi cau hinh chay vagrant k co ssh_key=false, thi vagrant se tu dong sinh key ra, khi do ping thi phai insert bien var chen key vao
+
+[all:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=./.vagrant/machines/default/virtualbox/private_key
+
+
+con neu vagrant co ssh_key=flase thi vagrant se khong sinh key, minh phai xai key goc cua minh
+[all:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+ansible -i hosts all -m ping ( phai co -i hosts de no biet file nao)
+
+ansible-playbook web-notls.yml -i hosts -> truy vao cap localhost:8080 se ra
